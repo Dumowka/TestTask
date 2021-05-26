@@ -1,4 +1,5 @@
 package pages;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selenide.*;
@@ -10,7 +11,7 @@ public class BasicPage {
         return footerSup223fzLink;
     }
 
-    public void clickLink(SelenideElement link){
-        link.click();
+    public void clickOnElement(SelenideElement element){
+        element.waitUntil(Condition.visible, 2000).click();
     }
 }

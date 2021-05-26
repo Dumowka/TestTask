@@ -5,14 +5,10 @@ import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class ZakupkiParticipants223Page {
+public class PurchasesParticipants223Page extends BasicPage{
     private final SelenideElement advancedSearchLink = $(By.xpath("//a[@href='/poisk/poisk-223-fz/']"));
 
     public SelenideElement getAdvancedSearchLink() {
         return advancedSearchLink;
-    }
-
-    public void clickLink(SelenideElement link){
-        link.click();
     }
 }
