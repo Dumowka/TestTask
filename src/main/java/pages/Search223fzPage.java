@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class Poisk223fzPage extends BasicPage{
+public class Search223fzPage extends BasicPage{
     private final SelenideElement searchSettings = $(By.cssSelector(".main-search__settings-btn"));
     private final SelenideElement checkBox_615pp_rf = $(By.xpath("//label[text()='615-ПП РФ']"));
     private final SelenideElement excludeJointPurchases = $(By.xpath("//label[text()='Исключить совместные закупки']"));
