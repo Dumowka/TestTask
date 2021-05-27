@@ -49,7 +49,7 @@ public class Task2StepsDef {
                 search223FzPage.getInputSearch().waitUntil(Condition.visible, 500).sendKeys(number);
                 search223FzPage.clickOnElement(search223FzPage.getButtonMainSearch());
                 sleep(1000);
-                uniquenessCheck();
+                checkUniqueness();
                 equalsNumbers(number);
                 SelenideElement searchClear = $(".search-tab__clear");
                 searchClear.waitUntil(Condition.visible, 500).click();
@@ -59,7 +59,7 @@ public class Task2StepsDef {
         }
     }
 
-    public void uniquenessCheck(){
+    public void checkUniqueness(){
         int count = search223FzPage.getCountNotifications();
         Assert.assertEquals(1, count);
     }
