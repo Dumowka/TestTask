@@ -1,7 +1,7 @@
 Feature: Select 223-Ф3
 
   Scenario: Select 223-Ф3
-    Given Сайт https://www.rts-tender.ru/
+    Given Сайт www.rts-tender.ru
     Then Нажатие в футере в разделе поставщиков на ссылку 223_ФЗ
     Then Нажатие на расширенный поиск
     Then Нажатие на настройки поиска

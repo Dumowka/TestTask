@@ -21,38 +21,38 @@ public class BasicPageDef {
     PurchasesParticipants223Page zakupkiParticipants223Page = new PurchasesParticipants223Page();
     private static final Logger log = Logger.getLogger(String.valueOf(BasicPageDef.class));
 
-    @Given("Сайт https:\\/\\/www.rts-tender.ru\\/")
-    public void WwwRtsTenderRu() {
+    @Given("Сайт www.rts-tender.ru")
+    public void wwwRtsTenderRu() {
         open("https://www.rts-tender.ru/");
     }
 
     @Then("Нажатие в футере в разделе поставщиков на ссылку 223_ФЗ")
-    public void ClickInTheFooterLink() {
+    public void clickInTheFooterLink() {
         basicPage.clickOnElement(basicPage.getFooterSup223fzLink());
     }
 
     @Then("Нажатие на расширенный поиск")
-    public void ClickingOnAdvencedSearch() {
+    public void clickingOnAdvencedSearch() {
         zakupkiParticipants223Page.clickOnElement(zakupkiParticipants223Page.getAdvancedSearchLink());
     }
 
     @Then("Нажатие на настройки поиска")
-    public void ClickingOnSearchSettings() {
+    public void clickingOnSearchSettings() {
         search223FzPage.clickOnElement(search223FzPage.getSearchSettings());
     }
 
     @Then("Поставить чекбокс на 615_ПП ФР")
-    public void CheckTheBoxNextTo615_PP_FR() {
+    public void checkTheBoxNextTo615_PP_FR() {
         search223FzPage.clickOnElement(search223FzPage.getCheckBox_615pp_rf());
     }
 
     @Then("Поставить чекбокс на исключить совместные покупки")
-    public void CheckingTheBoxNextToExcludeJointPurchases() {
+    public void checkingTheBoxNextToExcludeJointPurchases() {
         search223FzPage.clickOnElement(search223FzPage.getExcludeJointPurchases());
     }
 
     @Then("Нажатие на фильтр по датам и установка даты")
-    public void ClickingOnTheFilterByDateAndSettingTheDate() {
+    public void clickingOnTheFilterByDateAndSettingTheDate() {
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -64,14 +64,14 @@ public class BasicPageDef {
     }
 
     @Then("Выбрать регион поставки Алтайский край")
-    public void SelectDeliveryRegionAltaiRegion() {
+    public void selectDeliveryRegionAltaiRegion() {
         search223FzPage.clickOnElement(search223FzPage.getDeliveryRegion());
         search223FzPage.clickOnElement(search223FzPage.getLinkRemoveAll());
         search223FzPage.clickOnElement(search223FzPage.getCheckBoxAltaiRegion());
     }
 
     @Then("Получить результат поиска")
-    public void GetSearchResult() {
+    public void getSearchResult() {
         try {
             search223FzPage.clickOnElement(search223FzPage.getButtonSearch());
             FileOutputStream fileOutputStream = new FileOutputStream("notes.txt");
@@ -81,12 +81,12 @@ public class BasicPageDef {
 
             // Проверяем, если существует кнопка для показания доп результатов и нажимаем на нее, пока она не исчезнет
             SelenideElement loadMore = search223FzPage.getButtonLoadMore();
-            int AllowableNumberOfLoopIterations = 50;
+            int allowableNumberOfLoopIterations = 50;
             while(loadMore.isDisplayed()){
                 search223FzPage.clickOnElement(loadMore);
                 sleep(500);
-                AllowableNumberOfLoopIterations--;
-                if (AllowableNumberOfLoopIterations == 0){
+                allowableNumberOfLoopIterations--;
+                if (allowableNumberOfLoopIterations == 0){
                     throw new Exception("Превышено число итераций для цикла, отвечающего за прогрузку дополнительных результатов поиска");
                 }
             }
@@ -104,15 +104,14 @@ public class BasicPageDef {
                     search223FzPage.clickOnElement(spanShowMore);
                 }
                 // Строим результат
-                StringBuilder string = new StringBuilder();
-                string.append(i+1);
-                string.append(" : ");
-                string.append(value);
-                string.append(", ");
-                string.append(search223FzPage.getCountInCardResult(card));
-                string.append(" штук");
-                string.append("\n");
-                byte[] text = string.toString().getBytes();
+                String string = (i + 1) +
+                        " : " +
+                        value +
+                        ", " +
+                        search223FzPage.getCountInCardResult(card) +
+                        " штук" +
+                        "\n";
+                byte[] text = string.getBytes();
                 fileOutputStream.write(text, 0, text.length);
                 log.info(value);
             }
